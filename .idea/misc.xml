@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Project/Toyproject018fineDust/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/Project/Toyproject018fineDust/app/src/main/res/drawable/ic_outline_info_24.xml" value="0.1305" />
+        <entry key="..\:/Project/Toyproject018fineDust/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Project/Toyproject018fineDust/app/src/main/res/layout/view_measured_item.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>

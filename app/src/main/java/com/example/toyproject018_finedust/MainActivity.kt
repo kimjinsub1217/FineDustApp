@@ -2,6 +2,7 @@ package com.example.toyproject018_finedust
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -56,10 +57,22 @@ class MainActivity : AppCompatActivity() {
             requestCode == REQUEST_ACCESS_LOCATION_PERMISSIONS &&
                     grantResults[0] == PackageManager.PERMISSION_GRANTED
 
-        if (!locationPermissionGranted) {
-            finish()
+        val backgroundLocationPermissionGranted =
+            requestCode == REQUEST_BACKGROUND_ACCESS_LOCATION_PERMISSIONS &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+            if(!backgroundLocationPermissionGranted){
+                requestBackgroundLocationPermissions()
+            } else {
+                fetchAirQualityData()
+            }
         } else {
-            fetchAirQualityData()
+            if (!locationPermissionGranted) {
+                finish()
+            } else {
+                fetchAirQualityData()
+            }
         }
     }
 
@@ -84,6 +97,16 @@ class MainActivity : AppCompatActivity() {
             REQUEST_ACCESS_LOCATION_PERMISSIONS
         )
     }
+
+    private fun requestBackgroundLocationPermissions() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(android.Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+            REQUEST_BACKGROUND_ACCESS_LOCATION_PERMISSIONS
+        )
+    }
+
+
 
     @SuppressLint("MissingPermission")
     private fun fetchAirQualityData() {
@@ -166,5 +189,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val REQUEST_ACCESS_LOCATION_PERMISSIONS = 100
+        private const val REQUEST_BACKGROUND_ACCESS_LOCATION_PERMISSIONS = 101
     }
 }

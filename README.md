@@ -19,4 +19,4 @@ LocationManager, Retrofit2, Coroutine, App Widgets
 
 ![image](https://user-images.githubusercontent.com/76811495/155955523-1fd01677-c0f0-4606-ae88-9ce1eddd528b.png)
 <br>
-<위젯>
+<위젯화면>
